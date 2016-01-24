@@ -22,7 +22,7 @@ function exitFail($error, $exit) {
 
 
 /**
- * Function handling loggin messages to file
+ * Function handling logging messages to file
  */
 function log_event($type, $message) {
     error_log("[" . date("Y.m.d H:i:s") . "] $type: " . $message . "\n", 
