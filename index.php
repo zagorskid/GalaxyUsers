@@ -86,7 +86,7 @@ if (!empty($action)) {
             if (!$resultAdd) {
                 exitFail("Blad dodawania nowego uzytkownika do bazy: " . pg_last_error($dbconn), false);
             } else {
-                log_event("Dodano nowego uzytkownika do bazy: $username ($email).");
+                log_event("INFO", "Dodano nowego uzytkownika do bazy: $username ($email).");
                 exitSuccess();                
             }            
             pg_free_result($resultAdd);          
