@@ -131,11 +131,11 @@ if (!empty($action)) {
                 pg_free_result($resultUpdate);               
             }
             
-            if ($record["active"] == "f") {
+            if ($record["deleted"] == "t") {
                 // activate account
-                $queryUpdate = sprintf("UPDATE galaxy_user SET update_time='%s', active='%s' WHERE username='%s';",
+                $queryUpdate = sprintf("UPDATE galaxy_user SET update_time='%s', deleted='%s' WHERE username='%s';",
                         date('Y-m-d H:i:s', $timestamp),
-                        "t",
+                        "f",
                         pg_escape_string($username)
                         );                
                 $resultUpdate = pg_query($queryUpdate);
@@ -149,7 +149,7 @@ if (!empty($action)) {
                 pg_free_result($resultUpdate);
             }
             
-            if ($record["email"] == $email && $record["password"] == $passwd && $record["active"] == "t") {
+            if ($record["email"] == $email && $record["password"] == $passwd && $record["deleted"] == "f") {
                 // nothing to do
                 log_event("INFO", "Wyslano formularz dla uzytkownika: $username. Nic nie zostalo zmienione.");
                 exitSuccess();
@@ -185,10 +185,10 @@ if (!empty($action)) {
             // disable account
             $record = pg_fetch_array($result, null, PGSQL_ASSOC);
             
-            if ($record["active"] == "t") {           
-                $queryUpdate = sprintf("UPDATE galaxy_user SET update_time='%s', active='%s' WHERE username='%s';", 
+            if ($record["deleted"] == "f") {           
+                $queryUpdate = sprintf("UPDATE galaxy_user SET update_time='%s', deleted='%s' WHERE username='%s';", 
                         date('Y-m-d H:i:s', $timestamp), 
-                        "f", 
+                        "t", 
                         pg_escape_string($username)
                 );
                 $resultUpdate = pg_query($queryUpdate);
