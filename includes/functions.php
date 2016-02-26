@@ -29,4 +29,11 @@ function log_event($type, $message) {
             3, "log/event.log");   
 }
 
+/**
+ * Function generating verification sum
+ */
+function generateMD5Sum($galaxySalt, $username, $timestamp, $passwd, $action, $email) {
+    return md5($galaxySalt . $username . $galaxySalt . $timestamp . $galaxySalt . $passwd . $galaxySalt . $action . $galaxySalt . $email . $galaxySalt);
+}
+
 ?>
