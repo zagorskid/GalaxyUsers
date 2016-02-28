@@ -1,0 +1,17 @@
+<?php
+
+// database host
+$dbhost = "";
+// database port
+$dbport = "";
+// database name
+$dbname = "";
+// database user
+$dbuser = "";
+// database password
+$dbpassword = "";
+
+// MD5 verification salt
+$galaxySalt = '';
+
+?>
